@@ -1,0 +1,8 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: python-configmap
+  namespace: default
+data:
+  db: mongodb://root:Trq45GFwun@mongo-mongodb.default.svc.cluster.local:27017
+  prismaURL: https://hatkit.xyz/prisma-client

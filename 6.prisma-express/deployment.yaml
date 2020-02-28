@@ -1,0 +1,18 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: graphql-prisma-deployment
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels: # labels to select/identify the deployment
+        app: graphql-prisma  
+    spec:     # pod spec                  
+      containers: 
+      - name: graphql-prisma
+        image: registry.gitlab.com/analytics-tracker/graphql-prisma:latest # image we pushed
+        ports:
+        - containerPort: 4000
+      imagePullSecrets:
+      - name: regcred

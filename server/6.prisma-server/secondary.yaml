@@ -23,12 +23,12 @@ spec:
           image: prismagraphql/prisma-prod:1.34 
           imagePullPolicy: Always
           resources: # CHANGE THIS AS NEEDED
-            requests:
-              memory: "1Gi"
-              cpu: "100m"
-            limits:
-              memory: "1Gi"
-              cpu: "100m"
+          # requests:
+          #   memory: "1Gi"
+          #   cpu: "100m"
+          # limits:
+          #   memory: "1Gi"
+          #   cpu: "100m"
           env:
             - name: SLOW_QUERIES_LOGGING
               value: "true"
@@ -37,21 +37,10 @@ spec:
             - name: ENV
               value: "prod"
             - name: PRISMA_CONFIG
-              value: | # CHANGE THIS AS NEEDED
-                port: 4466
-                managementApiSecret: "MuchSecret"
-                enableManagementApi: "true"
-                server2serverSecret: "SuperSecretWow"
-                rabbitUri: "amqp://user:3TdZMnYGqx@rabbitmq.default.svc.cluster.local:5672"
-                databases:
-                  default:
-                    connector: mongo
-                    uri: mongodb://mongodb-mongodb-replicaset.default.svc.cluster.local:27017
-                    active: "true"                    
-                    connectionLimit: 20
-                    database: "prisma"
-                    managementSchema: "prisma"
-                    ssl: false         
+              valueFrom:
+                configMapKeyRef:
+                  name: prisma-configmap
+                  key: PRISMA_CONFIG  
           ports:
             - containerPort: 4466
 ---

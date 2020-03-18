@@ -1,4 +1,5 @@
-kubectl apply -f .
+1. Provide rabbitmq username and password 
+2. kubectl apply -f .
 
 To expose the prisma server 
 

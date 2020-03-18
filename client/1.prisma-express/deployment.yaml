@@ -11,7 +11,7 @@ spec:
     spec:     # pod spec                  
       containers: 
       - name: graphql-prisma
-        image: registry.gitlab.com/analytics-tracker/graphql-prisma:latest
+        image: registry.gitlab.com/analytics-tracker/2.prisma-express:latest
         imagePullPolicy: Always
         resources:
           requests:
@@ -24,9 +24,9 @@ spec:
         - name: graphql-config
           valueFrom:
             configMapKeyRef:
-              name: prisma-express-congifmap
+              name: prisma-express-configmap
               key: PRISMA_EXPRESS                            
         ports:
         - containerPort: 4000
       imagePullSecrets:
-      - name: regcred
+      - name: gitlab-registry

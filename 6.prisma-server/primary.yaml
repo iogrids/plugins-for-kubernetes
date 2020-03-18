@@ -40,7 +40,7 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: prisma-configmap
-                  key: PRISMA_CONFIG
+                  key: PRISMA_CONFIG_PRIMARY
           ports:
             - containerPort: 4466
 ---

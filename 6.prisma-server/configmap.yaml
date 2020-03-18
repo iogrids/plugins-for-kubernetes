@@ -7,7 +7,7 @@ metadata:
     name: prisma
     app: prisma
 data:
-  PRISMA_CONFIG: |
+  PRISMA_CONFIG_PRIMARY: |
     port: 4466
     managementApiSecret: "MuchSecret"
     enableManagementApi: "true"
@@ -22,3 +22,19 @@ data:
         database: "prisma"
         managementSchema: "prisma"
         ssl: false
+
+  PRISMA_CONFIG_SECONDARY: |
+    port: 4466
+    managementApiSecret: "MuchSecret"
+    enableManagementApi: "false"
+    server2serverSecret: "SuperSecretWow"
+    rabbitUri: "amqp://user:TW0RC1BK0J@rabbitmq.default.svc.cluster.local:5672"
+    databases:
+      default:
+        connector: mongo
+        uri: mongodb://mongodb-mongodb-replicaset.default.svc.cluster.local:27017 
+        active: "true"
+        connectionLimit: 20
+        database: "prisma"
+        managementSchema: "prisma"
+        ssl: false       

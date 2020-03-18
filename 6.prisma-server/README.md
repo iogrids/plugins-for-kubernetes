@@ -3,7 +3,7 @@
 
 To expose the prisma server 
 
-    kubectl port-forward primary-deployment-<PROVIDE POD NAME> 4466:4466
+    kubectl port-forward primary-deployment-<PROVIDE POD NAME> 4466:4466 &
 
 
 Note:

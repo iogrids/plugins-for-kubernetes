@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: graphql-prisma-deployment
 spec:
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels: # labels to select/identify the deployment
@@ -11,7 +11,21 @@ spec:
     spec:     # pod spec                  
       containers: 
       - name: graphql-prisma
-        image: registry.gitlab.com/analytics-tracker/graphql-prisma:latest # image we pushed
+        image: registry.gitlab.com/analytics-tracker/graphql-prisma:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "100m"
+          limits:
+            memory: "1Gi"
+            cpu: "100m"
+        env:  
+        - name: graphql-config
+          valueFrom:
+            configMapKeyRef:
+              name: prisma-express-congifmap
+              key: PRISMA_EXPRESS                            
         ports:
         - containerPort: 4000
       imagePullSecrets:

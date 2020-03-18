@@ -5,7 +5,8 @@
 5. helm init
 6. kubectl -n kube-system create serviceaccount tiller
 7. kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
-8. helm init --service-account tiller
+8. kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+9. helm init --service-account tiller
 
 To verify that Tiller is running, list the pods in thekube-system namespace
 

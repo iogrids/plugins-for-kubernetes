@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "analytics-tracker"
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    certmanager.k8s.io/cluster-issuer: letsencrypt-staging
+spec:
+  rules:
+  - host: hatkit.xyz
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: 
+            servicePort: 80
+
+        - path: /prisma-management
+          backend:
+            serviceName: prisma-primary-service
+            servicePort: 4466
+
+        - path: /prisma
+          backend:
+            serviceName: prisma-secondary-service
+            servicePort: 4466
+
+        - path: /prisma-express
+          backend:
+            serviceName: prisma-express
+            servicePort: 4000
+  tls:
+  - hosts:
+    - hatkit.xyz
+    secretName: letsencrypt-staging

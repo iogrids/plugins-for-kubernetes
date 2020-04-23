@@ -8,7 +8,7 @@ chmod +x kops-linux-amd64
 sudo mv kops-linux-amd64 /usr/local/bin/kops
 ```
 
-## Install kubectl
+## 2. Install kubectl
 
 ```
 curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
@@ -16,7 +16,7 @@ chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 ```
 
-## Install IAM user and attach policy
+## 3. Install IAM user and attach policy
 
 ```
 aws iam create-group --group-name kops
@@ -36,7 +36,7 @@ aws iam create-access-key --user-name kops
 
 You should record the SecretAccessKey and AccessKeyID in the returned JSON output, and then use them below:
 
-## Setup AWS CLI
+## 4. Setup AWS CLI
 
 ```
 # configure the aws client to use your new IAM user
@@ -48,7 +48,7 @@ export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
 export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
 ```
 
-## Create s3 bucket
+## 5. Create s3 bucket
 
 ```
 aws s3api create-bucket \
@@ -56,14 +56,14 @@ aws s3api create-bucket \
     --region us-east-1
 ```
 
-## Cluster configuration
+## 6. Cluster configuration
 
 ```
 export NAME=PROVIDE-CLUSTER-NAME-HERE.k8s.local
 export KOPS_STATE_STORE=s3://prefix-example-com-state-store   #Provide bucket name
 ```
 
-## Setup Cluster
+## 7. Setup Cluster
 
 Note: us-west-2a us-west-2b are availability zones. Availability zones are seperate buildings where your server is located in a given region which us us-west-2. 
 To identify the list of availibility zones in us-west-2 region who can use the command below
@@ -82,7 +82,7 @@ kops create cluster \
 
 ```
 
-## create SSH key
+## 8. create SSH key
 
 ```
 ssh-keygen -b 2048 -t rsa -f ~/.ssh/id_rsa   #Hit enter key for all options
@@ -104,7 +104,7 @@ kops edit ig REPLACE-WITH-NAME-OF-THE-MASTER --name ${NAME}
 
 ```
 
-## Create the cluster
+## 9. Create the cluster
 
 ```
 kops update cluster ${NAME} --yes

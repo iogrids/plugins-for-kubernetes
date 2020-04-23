@@ -1,4 +1,4 @@
-# Installing Kubernetes on AWS using KOPS
+#1. Installing Kubernetes on AWS using KOPS
 
 ## Install KOPS CLI
 

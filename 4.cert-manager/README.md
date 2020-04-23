@@ -6,4 +6,6 @@ helm install --name cert-manager --namespace cert-manager jetstack/cert-manager
 
 # Install the certificate
 
+```
 kubectl apply -f production-cluster-issuer.yaml
+```

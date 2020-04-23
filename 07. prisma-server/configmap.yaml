@@ -12,7 +12,7 @@ data:
     managementApiSecret: "MuchSecret"
     enableManagementApi: "true"
     server2serverSecret: "SuperSecretWow"
-    rabbitUri: "amqp://user:TW0RC1BK0J@rabbitmq.default.svc.cluster.local:5672"
+    rabbitUri: "amqp://user:ZuH4h5DW6d@rabbitmq.default.svc.cluster.local:5672"
     databases:
       default:
         connector: mongo
@@ -28,7 +28,7 @@ data:
     managementApiSecret: "MuchSecret"
     enableManagementApi: "false"
     server2serverSecret: "SuperSecretWow"
-    rabbitUri: "amqp://user:TW0RC1BK0J@rabbitmq.default.svc.cluster.local:5672"
+    rabbitUri: "amqp://user:ZuH4h5DW6d@rabbitmq.default.svc.cluster.local:5672"
     databases:
       default:
         connector: mongo

@@ -60,7 +60,7 @@ aws s3api create-bucket \
 
 ```
 export NAME=PROVIDE-CLUSTER-NAME-HERE.k8s.local
-export KOPS_STATE_STORE=s3://prefix-example-com-state-store   #Provide bucket name
+export KOPS_STATE_STORE=s3://prefix-example-com-state-store   # Provide bucket name
 ```
 
 ## 7. Setup Cluster
@@ -110,4 +110,16 @@ kops edit ig REPLACE-WITH-NAME-OF-THE-MASTER --name ${NAME}
 kops update cluster ${NAME} --yes
 
 ```
+
+# Deleting the kubernetes cluster
+
+!NOTE: WAIT TILL THE CLUSTER GETS DELETED, Check loadbalancer section, volume section, ec2 instance section, auto scaling groups and confirm whether all resources are deleted.
+
+```
+export NAME=PROVIDE-CLUSTER-NAME-HERE-WHICH-WAS-USED-WHEN-CREATING-CLUSTER.k8s.local
+kops delete cluster --name ${NAME} --yes 
+```
+
+
+
 

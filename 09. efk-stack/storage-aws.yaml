@@ -1,0 +1,9 @@
+# Provisioning AWS Storage. This is for storing EFK logs in aws storage drives
+
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: cloud-ssd
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2

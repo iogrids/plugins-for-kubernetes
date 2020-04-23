@@ -111,6 +111,8 @@ kops update cluster ${NAME} --yes
 
 ```
 
+---
+
 # Deleting the kubernetes cluster
 
 !NOTE: WAIT TILL THE CLUSTER GETS DELETED, Check loadbalancer section, volume section, ec2 instance section, auto scaling groups and confirm whether all resources are deleted.

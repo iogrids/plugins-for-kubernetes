@@ -119,7 +119,7 @@ kops update cluster ${NAME} --yes
 
 ```
 export NAME=PROVIDE-CLUSTER-NAME-HERE-WHICH-WAS-USED-WHEN-CREATING-CLUSTER.k8s.local
-export KOPS_STATE_STORE=s3://analytics-tracker-state-store  #Provide s3 bucket URL
+export KOPS_STATE_STORE=s3://analytics-tracker-state-store  #Provide s3 bucket URL which was used earlier
 kops delete cluster --name ${NAME} --yes 
 ```
 

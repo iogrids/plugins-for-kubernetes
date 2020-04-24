@@ -16,6 +16,12 @@ chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 ```
 
+## Configure aws 
+
+```
+aws configure # provide root AWSAccessKeyId and AWSSecretKey when asked
+```
+
 ## 3. Install IAM user and attach policy
 
 ```
@@ -40,7 +46,7 @@ You should record the SecretAccessKey and AccessKeyID in the returned JSON outpu
 
 ```
 # configure the aws client to use your new IAM user
-aws configure           # Use your new access and secret key here
+aws configure           # Use your new access and secret key here (Provide KOPS (the above created user) access key and secret key here )
 aws iam list-users      # you should see a list of all your IAM users here
 
 # Because "aws configure" doesn't export these vars for kops to use, we export them now
@@ -52,15 +58,15 @@ export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
 
 ```
 aws s3api create-bucket \
-    --bucket PROVIDE-UNIQUE-BUCKET-NAME-HERE \
+    --bucket hatkit-com-s3-bucket \
     --region us-east-1
 ```
 
 ## 6. Cluster configuration
 
 ```
-export NAME=PROVIDE-CLUSTER-NAME-HERE.k8s.local
-export KOPS_STATE_STORE=s3://prefix-example-com-state-store   # Provide bucket name
+export NAME=hatkit-cluster.k8s.local
+export KOPS_STATE_STORE=s3://hatkit-com-s3-bucket   # Provide bucket name
 ```
 
 ## 7. Setup Cluster

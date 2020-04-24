@@ -46,7 +46,7 @@ You should record the SecretAccessKey and AccessKeyID in the returned JSON outpu
 
 ```
 # configure the aws client to use your new IAM user
-aws configure           # Use your new access and secret key here
+aws configure           # Use your new access and secret key here (Provide KOPS (the above created user) access key and secret key here )
 aws iam list-users      # you should see a list of all your IAM users here
 
 # Because "aws configure" doesn't export these vars for kops to use, we export them now

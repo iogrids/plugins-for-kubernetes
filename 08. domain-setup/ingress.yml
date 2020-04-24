@@ -10,7 +10,7 @@ spec:
   - host: hatkit.xyz
     http:
       paths:
-        - path: /prisma-management
+        - path: /management
           backend:
             serviceName: prisma-primary-service
             servicePort: 4466

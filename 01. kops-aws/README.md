@@ -19,7 +19,7 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 ## Configure aws 
 
 ```
-aws configure # provide AWSAccessKeyId and AWSSecretKey when asked
+aws configure # provide root AWSAccessKeyId and AWSSecretKey when asked
 ```
 
 ## 3. Install IAM user and attach policy

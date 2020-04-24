@@ -66,7 +66,7 @@ aws s3api create-bucket \
 
 ```
 export NAME=hatkit-cluster.k8s.local
-export KOPS_STATE_STORE=s3://prefix-example-com-state-store   # Provide bucket name
+export KOPS_STATE_STORE=s3://hatkit-com-s3-bucket   # Provide bucket name
 ```
 
 ## 7. Setup Cluster

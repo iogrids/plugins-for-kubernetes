@@ -58,14 +58,14 @@ export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
 
 ```
 aws s3api create-bucket \
-    --bucket PROVIDE-UNIQUE-BUCKET-NAME-HERE \
+    --bucket hatkit-com-s3-bucket \
     --region us-east-1
 ```
 
 ## 6. Cluster configuration
 
 ```
-export NAME=PROVIDE-CLUSTER-NAME-HERE.k8s.local
+export NAME=hatkit-cluster.k8s.local
 export KOPS_STATE_STORE=s3://prefix-example-com-state-store   # Provide bucket name
 ```
 

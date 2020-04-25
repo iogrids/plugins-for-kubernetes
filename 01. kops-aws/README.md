@@ -129,6 +129,12 @@ export KOPS_STATE_STORE=s3://analytics-tracker-state-store  #Provide s3 bucket U
 kops delete cluster --name ${NAME} --yes # kubectl config current-context will get you the current cluster name
 ```
 
+# Helpful KOPS commands
 
+```
+kops get cluster     # Will provide the cluster name and list all clusters
+kops delete cluster --name=PROVIDE-CLUSTER-NAME-HERE --yes
+
+```
 
 

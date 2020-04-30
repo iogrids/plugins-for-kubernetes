@@ -247,7 +247,7 @@ spec:
   - metadata:
       name: elasticsearch-logging
     spec:
-      storageClassName: cloud-ssd
+      storageClassName: do-block-storage # Change it to cloud-ssd for AWS.  
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:

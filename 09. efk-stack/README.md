@@ -21,3 +21,10 @@ kubectl apply -f elastic-stack.yaml
 kubectl get pods -n kube-system
 
 ```
+
+4. To get the kibana dashboard. Kibana will automatically create a loadbalancer when deployed.
+
+```
+kubectl get svc -n kube-system 
+
+```

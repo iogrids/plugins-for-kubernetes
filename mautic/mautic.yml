@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mautic 
+  name: mautic 
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80      
+  selector:
+    app: mautic
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mautic 
+  labels:
+    app: mautic 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mautic 
+  template:
+    metadata:
+      labels:
+        app: mautic 
+    spec:
+      containers:
+        - image: mautic/mautic 
+          name: mautic
+          env:
+          - name: MAUTIC_DB_HOST
+            value: galera:3306
+          - name: MAUTIC_DB_USER
+            value: root
+          - name: MAUTIC_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: lovia-prod-mautic
+                key: db-password
+          - name: MAUTIC_DB_NAME
+            value: mautic
+          - name: MAUTIC_RUN_CRON_JOBS
+            value: 'true'
+          - name: MAUTIC_TRUSTED_PROXIES
+            # value: nginx-ingress-controller.default.svc.cluster.local
+            value: 10.0.0.0/8
+          ports:
+            - containerPort: 80
+              name: mautic
+          volumeMounts:
+          - mountPath: "/var/www/html"
+            name: mautic-var-www-html
+          # Health check
+          livenessProbe:
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            httpGet:
+              path: /s/login
+              port: 80
+          resources:
+            limits:
+              memory: 384Mi
+            requests:
+              memory: 384Mi
+      volumes:
+        - name: mautic-var-www-html
+          persistentVolumeClaim:
+            claimName: mautic-pvc  
+        
+  

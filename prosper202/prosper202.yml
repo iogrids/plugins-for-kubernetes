@@ -2,60 +2,61 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: mautic 
-  name: mautic 
+    app: prosper 
+  name: prosper 
 spec:
   type: LoadBalancer
   ports:
     - port: 80      
   selector:
-    app: mautic
+    app: prosper
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mautic 
+  name: prosper 
   labels:
-    app: mautic 
+    app: prosper 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mautic 
+      app: prosper 
   template:
     metadata:
       labels:
-        app: mautic 
+        app: prosper 
     spec:
       containers:
-        - image: jerilcj3/marketing:2.0
-          name: mautic
+        - image: jerilcj3/php-docker-apache-example:7.4 
+          name: prosper
+          securityContext:
+            capabilities:
+              add: ["SYS_TIME", "SYS_NICE"]
           env:
-          - name: MAUTIC_DB_HOST
+          - name: PROSPER_DB_HOST
             value: galera:3306
-          - name: MAUTIC_DB_USER
+          - name: PROSPER_DB_USER
             value: root
-          - name: MAUTIC_DB_PASSWORD
+          - name: PROSPER_DB_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: lovia-prod-mautic
+                name: lovia-prod-prosper
                 key: db-password
-          - name: MAUTIC_DB_NAME
-            value: mautic
-          - name: MAUTIC_RUN_CRON_JOBS
-            value: 'true'          
+          - name: PROSPER_DB_NAME
+            value: prosper
           ports:
             - containerPort: 80
-              name: mautic
+              name: prosper
           volumeMounts:
           - mountPath: "/var/www/html"
-            name: mautic-var-www-html
+            name: prosper-var-www-html
           # Health check
           livenessProbe:
             initialDelaySeconds: 10
             periodSeconds: 10
             httpGet:
-              path: /s/login
+              path: /index.php
               port: 80
           resources:
             limits:
@@ -63,8 +64,8 @@ spec:
             requests:
               memory: 384Mi
       volumes:
-        - name: mautic-var-www-html
+        - name: prosper-var-www-html
           persistentVolumeClaim:
-            claimName: mautic-pvc  
+            claimName: prosper-pvc  
         
   

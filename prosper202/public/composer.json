@@ -1,0 +1,5 @@
+{
+    "require": {
+        "psecio/vaultlib": "^0.1.0"
+    }
+}

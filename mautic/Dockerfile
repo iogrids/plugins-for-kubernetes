@@ -1,3 +1,5 @@
+# Dockerfile source: https://hub.docker.com/r/mautic/mautic/dockerfile
+
 FROM php:7.3-apache
 
 LABEL vendor="Mautic"

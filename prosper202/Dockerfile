@@ -55,7 +55,7 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/lib --with-png-dir=/usr
     
 # Memcached Installation
 
-RUN apt-get update && apt-get install -y 
+RUN apt-get update && apt-get install -y \
         libmemcached11 \
         libmemcachedutil2 \
         libmemcached-dev \

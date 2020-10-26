@@ -34,12 +34,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libjpeg62-turbo-dev \
     libxpm-dev \
     libaprutil1-dev \
-    libicu-dev \
     libfreetype6-dev \    
-    memcached \
-    libmemcached-dev \
-    zlib1g-dev \
-    libicu-dev \
     libzip-dev \
     zlibc \
     zlib1g \
@@ -56,12 +51,31 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/lib --with-png-dir=/usr
     && docker-php-ext-configure zip --with-libzip \
     && docker-php-ext-install zip \    
     && docker-php-ext-configure mcrypt \
-    && docker-php-ext-install mcrypt \
-    && git clone -b php7 https://github.com/php-memcached-dev/php-memcached /usr/src/php/ext/memcached \
-    && docker-php-ext-configure /usr/src/php/ext/memcached \
-        --disable-memcached-sasl \
-    && docker-php-ext-install /usr/src/php/ext/memcached \
-    && rm -rf /usr/src/php/ext/memcached
+    && docker-php-ext-install mcrypt
+    
+# Memcached Installation
+
+RUN apt-get update && apt-get install -y 
+        libmemcached11 \
+        libmemcachedutil2 \
+        libmemcached-dev \
+        libz-dev \
+        git \
+    && cd /root \
+    && git clone -b php7 https://github.com/php-memcached-dev/php-memcached \
+    && cd php-memcached \
+    && phpize \
+    && ./configure \
+    && make \
+    && make install \
+    && cd .. \
+    && rm -rf  php-memcached \
+    && echo extension=memcached.so >> /usr/local/etc/php/conf.d/memcached.ini \
+    && apt-get remove -y build-essential libmemcached-dev libz-dev \
+    && apt-get remove -y libmemcached-dev libz-dev \
+    && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer

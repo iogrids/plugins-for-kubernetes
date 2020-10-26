@@ -29,6 +29,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     graphicsmagick \
     libwebp-dev \
     libxpm-dev \
+    libmemcached-dev \
     libaprutil1-dev \
     libzip-dev \
     zlibc \
@@ -52,15 +53,11 @@ RUN apt-get update && apt-get install -y libmcrypt-dev \
     && docker-php-ext-enable mcrypt
 
 # Install Memcached for php 7
-RUN apt-get update && apt-get install -y \
-    libpq-dev \
-    libmemcached-dev \ 
-    && curl -L -o /tmp/memcached.tar.gz "https://github.com/php-memcached-dev/php-memcached/archive/php7.tar.gz" \
-    && mkdir -p /usr/src/php/ext/memcached \
-    && tar -C /usr/src/php/ext/memcached -zxvf /tmp/memcached.tar.gz --strip 1 \
-    && docker-php-ext-configure memcached \
-    && docker-php-ext-install memcached \
-    && rm /tmp/memcached.tar.gz
+RUN mkdir -p /usr/src/php/ext/memcached
+WORKDIR /usr/src/php/ext/memcached
+RUN wget https://github.com/php-memcached-dev/php-memcached/archive/v3.1.3.zip; unzip /usr/src/php/ext/memcached/v3.1.3.zip
+RUN mv /usr/src/php/ext/memcached/php-memcached-3.1.3/* /usr/src/php/ext/memcached/
+RUN docker-php-ext-configure memcached && docker-php-ext-install memcached 
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer

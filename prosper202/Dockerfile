@@ -2,7 +2,7 @@ FROM php:7.3-apache
 
 LABEL vendor="Prosper202"
 
-LABEL maintainer="Luiz Eduardo Oliveira Fonseca <luiz@powertic.com>"
+LABEL maintainer="Jeril <johcp.com>"
 
 # Install PHP extensions
 RUN apt-get update && apt-get install --no-install-recommends -y \    

@@ -24,13 +24,10 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libmagickwand-dev \
     libgif-dev \
     libtiff-dev \
-    libz-dev \
     imagemagick \
     graphicsmagick \
     libwebp-dev \
     libxpm-dev \
-    memcached \
-    libmemcached-dev \
     libaprutil1-dev \
     libzip-dev \
     zlibc \
@@ -46,7 +43,13 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/lib --with-png-dir=/usr
     && docker-php-ext-install intl mbstring mysqli curl pdo_mysql zip opcache bcmath gd \
     && docker-php-ext-enable intl mbstring mysqli curl pdo_mysql zip opcache bcmath gd \
     && docker-php-ext-configure zip --with-libzip \
-    && docker-php-ext-install zip 
+    && docker-php-ext-install zip
+
+# Memcached Installation
+RUN apt-get update
+RUN apt-get install -y libz-dev libmemcached-dev && \
+    pecl install memcached && \
+    docker-php-ext-enable memcached
     
 # Mcrypt Installation
 RUN apt-get update && apt-get install -y libmcrypt-dev \

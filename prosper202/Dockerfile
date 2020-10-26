@@ -17,13 +17,11 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     sudo \
     libc-client-dev \
     libkrb5-dev \
-    libmcrypt-dev \
     libssl-dev \
     libxml2-dev \
     libzip-dev \
     libjpeg-dev \
     libmagickwand-dev \
-    libpng-dev \
     libgif-dev \
     libtiff-dev \
     libz-dev \
@@ -31,10 +29,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     imagemagick \
     graphicsmagick \
     libwebp-dev \
-    libjpeg62-turbo-dev \
     libxpm-dev \
     libaprutil1-dev \
-    libfreetype6-dev \    
     libzip-dev \
     zlibc \
     zlib1g \
@@ -49,12 +45,19 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/lib --with-png-dir=/usr
     && docker-php-ext-install intl mbstring mysqli curl pdo_mysql zip opcache bcmath gd \
     && docker-php-ext-enable intl mbstring mysqli curl pdo_mysql zip opcache bcmath gd \
     && docker-php-ext-configure zip --with-libzip \
-    && docker-php-ext-install zip \    
-    && docker-php-ext-configure mcrypt \
-    && docker-php-ext-install mcrypt
+    && docker-php-ext-install zip 
     
-# Memcached Installation
+# Mcrypt Installation
+RUN apt-get update && apt-get install -y \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libmcrypt-dev \
+        libpng-dev \
+    && docker-php-ext-install -j$(nproc) iconv mcrypt \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install -j$(nproc) gd
 
+# Memcached Installation
 RUN apt-get update && apt-get install -y \
         libmemcached11 \
         libmemcachedutil2 \

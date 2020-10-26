@@ -55,7 +55,8 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/lib --with-png-dir=/usr
     && docker-php-ext-enable intl mbstring mysqli curl pdo_mysql zip opcache bcmath gd \
     && docker-php-ext-configure zip --with-libzip \
     && docker-php-ext-install zip \    
-    && docker-php-ext-enable mcrypt \
+    && docker-php-ext-configure mcrypt \
+    && docker-php-ext-install mcrypt \
     && git clone -b php7 https://github.com/php-memcached-dev/php-memcached /usr/src/php/ext/memcached \
     && docker-php-ext-configure /usr/src/php/ext/memcached \
         --disable-memcached-sasl \

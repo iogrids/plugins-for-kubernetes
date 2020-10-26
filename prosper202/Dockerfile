@@ -52,7 +52,8 @@ RUN apt-get update && apt-get install -y libmcrypt-dev \
     && docker-php-ext-enable mcrypt
 
 # Install Memcached for php 7
-RUN curl -L -o /tmp/memcached.tar.gz "https://github.com/php-memcached-dev/php-memcached/archive/php7.tar.gz" \
+RUN apt-get update && apt-get install -y libmemcached-dev \
+    && curl -L -o /tmp/memcached.tar.gz "https://github.com/php-memcached-dev/php-memcached/archive/php7.tar.gz" \
     && mkdir -p memcached \
     && tar -C memcached -zxvf /tmp/memcached.tar.gz --strip 1 \
     && ( \

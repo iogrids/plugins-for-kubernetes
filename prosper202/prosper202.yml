@@ -28,7 +28,7 @@ spec:
         app: prosper 
     spec:
       containers:
-        - image: jerilcj3/php-docker-apache-example:10.0
+        - image: jerilcj3/php-docker-apache-example:11.0
           name: prosper
           securityContext:
             capabilities:

@@ -25,7 +25,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libgif-dev \
     libtiff-dev \
     libz-dev \
-    libpq-dev \
     imagemagick \
     graphicsmagick \
     libwebp-dev \
@@ -51,6 +50,17 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/lib --with-png-dir=/usr
 RUN apt-get update && apt-get install -y libmcrypt-dev \
     && pecl install mcrypt-1.0.2 \
     && docker-php-ext-enable mcrypt
+
+# Memcached Installation
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    libmemcached-dev \
+    curl -L -o /tmp/memcached.tar.gz "https://github.com/php-memcached-dev/php-memcached/archive/php7.tar.gz" \
+    && mkdir -p /usr/src/php/ext/memcached \
+    && tar -C /usr/src/php/ext/memcached -zxvf /tmp/memcached.tar.gz --strip 1 \
+    && docker-php-ext-configure memcached \
+    && docker-php-ext-install memcached \
+    && rm /tmp/memcached.tar.gz
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer

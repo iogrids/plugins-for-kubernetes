@@ -36,6 +36,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libaprutil1-dev \
     libicu-dev \
     libfreetype6-dev \
+    libmemcached-dev \
     memcached \
     libmemcached-tools \
     libzip-dev \

@@ -43,7 +43,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     zlib1g \
     unzip \
     mariadb-client \
-    && pecl install mcrypt-1.0.1 \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && rm -rf /var/lib/apt/lists/*
 

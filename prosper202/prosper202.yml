@@ -28,7 +28,7 @@ spec:
         app: prosper 
     spec:
       containers:
-        - image: jerilcj3/php-docker-apache-example:7.4 
+        - image: jerilcj3/php-docker-apache-example:8.2
           name: prosper
           securityContext:
             capabilities:
@@ -50,7 +50,7 @@ spec:
               name: prosper
           volumeMounts:
           - mountPath: "/var/www/html"
-            name: prosper-var-www-html
+            name: prosper-var-www
           # Health check
           livenessProbe:
             initialDelaySeconds: 10
@@ -64,7 +64,7 @@ spec:
             requests:
               memory: 384Mi
       volumes:
-        - name: prosper-var-www-html
+        - name: prosper-var-www
           persistentVolumeClaim:
             claimName: prosper-pvc  
         

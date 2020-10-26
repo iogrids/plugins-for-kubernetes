@@ -35,10 +35,11 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libxpm-dev \
     libaprutil1-dev \
     libicu-dev \
-    libfreetype6-dev \
-    libmemcached-dev \
+    libfreetype6-dev \    
     memcached \
-    libmemcached-tools \
+    libmemcached-dev \
+    zlib1g-dev \
+    libicu-dev \
     libzip-dev \
     zlibc \
     zlib1g \
@@ -53,12 +54,13 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/lib --with-png-dir=/usr
     && docker-php-ext-install intl mbstring mysqli curl pdo_mysql zip opcache bcmath gd \
     && docker-php-ext-enable intl mbstring mysqli curl pdo_mysql zip opcache bcmath gd \
     && docker-php-ext-configure zip --with-libzip \
-    && docker-php-ext-install zip \
-    && git clone https://github.com/php-memcached-dev/php-memcached /usr/src/php/ext/memcached \
-    && cd /usr/src/php/ext/memcached && git checkout -b php7 origin/php7 \
-    && docker-php-ext-configure memcached \
-    && docker-php-ext-install memcached \
+    && docker-php-ext-install zip \    
     && docker-php-ext-enable mcrypt
+    && git clone -b php7 https://github.com/php-memcached-dev/php-memcached /usr/src/php/ext/memcached \
+    && docker-php-ext-configure /usr/src/php/ext/memcached \
+        --disable-memcached-sasl \
+    && docker-php-ext-install /usr/src/php/ext/memcached \
+    && rm -rf /usr/src/php/ext/memcached
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer

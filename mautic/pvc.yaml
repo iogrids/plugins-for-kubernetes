@@ -1,11 +1,11 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: mautic
+  name: mautic-pvc
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 20Mi
-  storageClassName: fast
+  storageClassName: mautic

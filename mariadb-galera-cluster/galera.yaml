@@ -125,7 +125,7 @@ spec:
       name: datadir
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: do-block-storage
+      storageClassName: ssd
       resources:
         requests:
           storage: 5Gi

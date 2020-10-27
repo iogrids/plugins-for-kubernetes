@@ -28,7 +28,7 @@ spec:
         app: prosper202
     spec:
       containers:
-        - image: jerilcj3/php-docker-apache-example:11.0
+        - image: jerilcj3/php-docker-apache-example:13.0
           name: prosper202
           securityContext:
             capabilities:
@@ -62,9 +62,7 @@ spec:
             limits:
               memory: 384Mi
             requests:
-              memory: 384Mi
-        - image: 1.6.7-alpine
-          name: memcached  
+              memory: 384Mi        
       volumes:
         - name: prosper202-var-www
           persistentVolumeClaim:

@@ -2,55 +2,55 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: prosper 
-  name: prosper 
+    app: prosper202 
+  name: prosper202 
 spec:
   type: LoadBalancer
   ports:
     - port: 80      
   selector:
-    app: prosper
+    app: prosper202
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prosper 
+  name: prosper202 
   labels:
-    app: prosper 
+    app: prosper202
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: prosper 
+      app: prosper202 
   template:
     metadata:
       labels:
-        app: prosper 
+        app: prosper202
     spec:
       containers:
         - image: jerilcj3/php-docker-apache-example:11.0
-          name: prosper
+          name: prosper202
           securityContext:
             capabilities:
               add: ["SYS_TIME", "SYS_NICE"]
           env:
-          - name: PROSPER_DB_HOST
+          - name: PROSPER202_DB_HOST
             value: galera:3306
-          - name: PROSPER_DB_USER
+          - name: PROSPER202_DB_USER
             value: root
-          - name: PROSPER_DB_PASSWORD
+          - name: PROSPER202_DB_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: lovia-prod-prosper
                 key: db-password
-          - name: PROSPER_DB_NAME
-            value: prosper
+          - name: PROSPER202_DB_NAME
+            value: prosper202
           ports:
             - containerPort: 80
-              name: prosper
+              name: prosper202
           volumeMounts:
           - mountPath: "/var/www/html"
-            name: prosper-var-www
+            name: prosper202-var-www
           # Health check
           livenessProbe:
             initialDelaySeconds: 10
@@ -64,8 +64,8 @@ spec:
             requests:
               memory: 384Mi
       volumes:
-        - name: prosper-var-www
+        - name: prosper202-var-www
           persistentVolumeClaim:
-            claimName: prosper-pvc  
+            claimName: prosper202-pvc
         
   

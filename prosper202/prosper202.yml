@@ -63,6 +63,8 @@ spec:
               memory: 384Mi
             requests:
               memory: 384Mi
+        - image: 1.6.7-alpine
+          name: memcached  
       volumes:
         - name: prosper202-var-www
           persistentVolumeClaim:

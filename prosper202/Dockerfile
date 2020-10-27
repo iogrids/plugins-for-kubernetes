@@ -45,12 +45,6 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/lib --with-png-dir=/usr
     && docker-php-ext-configure zip --with-libzip \
     && docker-php-ext-install zip
 
-# Memcached Installation
-RUN apt-get update
-RUN apt-get install -y libz-dev libmemcached-dev && \
-    pecl install memcached && \
-    docker-php-ext-enable memcached
-    
 # Mcrypt Installation
 RUN apt-get update && apt-get install -y libmcrypt-dev \
     && pecl install mcrypt-1.0.2 \

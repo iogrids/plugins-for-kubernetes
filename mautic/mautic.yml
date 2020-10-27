@@ -65,6 +65,6 @@ spec:
       volumes:
         - name: mautic-var-www-html
           persistentVolumeClaim:
-            claimName: mautic-pvc  
+            claimName: mautic
         
   

@@ -1,0 +1,8 @@
+//this is used to create fast storage in google cloud. If you do not specify storageClass, Google Cloud will use the default storageclass which is slow
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: mautic
+provisioner: kubernetes.io/gce-pd
+parameters:
+  type: pd-ssd

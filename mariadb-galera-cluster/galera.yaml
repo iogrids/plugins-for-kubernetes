@@ -120,12 +120,13 @@ spec:
               key: galera.cnf
             - path: "mariadb.cnf"
               key: mariadb.cnf
+  # VolumeClaimTemplates are used with StatefulSet
   volumeClaimTemplates:
   - metadata:
       name: datadir
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: ssd
+      storageClassName: mariadb
       resources:
         requests:
           storage: 5Gi

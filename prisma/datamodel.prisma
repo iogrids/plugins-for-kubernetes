@@ -1,0 +1,100 @@
+type User {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  traffic: [Traffic]
+  lander: [Lander]
+  offer: [Offer]
+  navigation: [Navigation]
+  campaign: [Campaign]
+  domain: [Domain]
+  mainDomain: MainDomain
+}
+
+type Parameter{
+  id:ID! @id
+  tokens: [String]!
+  track: Boolean!
+}
+type DefaultParam{
+  id: ID! @id
+  head:String
+  default:String
+  tokens: [String]!
+  track: Boolean!
+}
+
+type Token{
+  id: ID! @id
+   name: String!
+   parameter:String!
+   placeholder:String!
+}
+type Traffic{
+  id: ID! @id
+  name: String!
+  userUnique:String! @unique
+  user: User! @relation(link: INLINE)
+  data: [Parameter!] @relation(link: INLINE)
+  default_data:   [DefaultParam!] @relation(link: INLINE)
+  lock:[String!]
+}
+
+type Lander{
+  id: ID! @id
+  name: String!
+  url: String!
+  userUnique:String! @unique
+  user: User! @relation(link: INLINE)
+  lock:[String!]
+}
+
+type Offer{
+  id: ID! @id
+  name: String!
+  url: String!
+  userUnique:String! @unique
+  user: User! @relation(link: INLINE)
+  lock:[String!]
+}
+
+type Navigation{
+  id: ID! @id
+  name: String!
+  userUnique:String! @unique
+  user: User! @relation(link: INLINE)
+  data:Json!
+  lock:[String!]
+}
+
+type Campaign{
+  id: ID! @id
+  name: String !
+  refresh:String!
+  totalPercent:Int!
+  url:String
+  traffic:String!
+  landerRow:[CampNavRows!]!  @relation(link: INLINE)
+  userUnique:String! @unique
+  user: User! @relation(link: INLINE)
+}
+type CampNavRows{
+  id: ID! @id
+  percent: Int!
+  landerName:String!
+}
+
+type Domain{
+  id: ID! @id
+  url: String ! @unique
+  userUnique:String! @unique
+  user: User! @relation(link: INLINE)
+  MainDomain : MainDomain
+}
+
+type MainDomain{
+  id: ID! @id
+  userUnique:String! @unique
+  domain:  Domain! @relation(link: INLINE)
+  user: User! @relation(link: INLINE)
+}

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prisma-express-configmap
+  namespace: default
+data:
+  PRISMA_EXPRESS: |
+    REACT_APP_URL: https://hatkit.xyz

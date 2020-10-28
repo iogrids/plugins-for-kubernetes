@@ -1,0 +1,10 @@
+node_modules/
+README.md
+Dockerfile
+yarn.lock
+package-lock.json
+.env
+kubernetes
+docker-compose-server.yml
+1.prisma-server/
+2.prisma/

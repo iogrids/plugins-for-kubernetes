@@ -1,0 +1,16 @@
+stages:
+- build
+- deploy
+
+build:
+  stage: build
+  when: on_success
+  only:
+    - master
+  image: docker:stable
+  services:
+    - docker:dind
+  script:
+    - docker login registry.gitlab.com
+    - docker build -t registry.gitlab.com/analytics-tracker/2.prisma-express .
+    - docker push registry.gitlab.com/analytics-tracker/2.prisma-express

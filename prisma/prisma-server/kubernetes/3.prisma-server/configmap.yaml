@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prisma-configmap
+  labels:
+    stage: production
+    name: prisma
+    app: prisma
+data:
+  PRISMA_CONFIG_PRIMARY: |
+    port: 4466
+    managementApiSecret: "MuchSecret"
+    enableManagementApi: "true"
+    server2serverSecret: "SuperSecretWow"
+    rabbitUri: "amqp://rabbitmq.default.svc.cluster.local:5672"
+    databases:
+      default:
+        connector: mongo
+        uri: mongodb://mongo-0.mongo,mongo-1.mongo,mongo-2.mongo/tracker 
+        active: "true"
+        connectionLimit: 20
+        database: "prisma"
+        managementSchema: "prisma"
+        ssl: false
+
+  PRISMA_CONFIG_SECONDARY: |
+    port: 4466
+    managementApiSecret: "MuchSecret"
+    enableManagementApi: "false"
+    server2serverSecret: "SuperSecretWow"
+    rabbitUri: "amqp://rabbitmq.default.svc.cluster.local:5672"
+    databases:
+      default:
+        connector: mongo
+        uri: mongodb://mongo-0.mongo,mongo-1.mongo,mongo-2.mongo/tracker 
+        active: "true"
+        connectionLimit: 20
+        database: "prisma"
+        managementSchema: "prisma"
+        ssl: false       

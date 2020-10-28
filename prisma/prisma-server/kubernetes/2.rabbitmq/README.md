@@ -1,9 +1,7 @@
 # Rabbitmq Setup
 
 ## 1. Create Secret Cookie
-```
 kubectl create secret generic rabbitmq-config --from-literal=erlang-cookie=rabbitmq-k8s-Dem0
-```
 
 ## 2. Apply the StatefulSet
 kubectl apply -f rabbitmq-statefulset.yaml

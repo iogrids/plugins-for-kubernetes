@@ -13,7 +13,7 @@ spec:
         - path: /
           backend:
             serviceName: mautic
-            servicePort: 4000        
+            servicePort: 8088        
   tls:
   - hosts:
     - crm.johcp.com

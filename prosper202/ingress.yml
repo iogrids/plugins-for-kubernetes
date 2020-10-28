@@ -13,7 +13,7 @@ spec:
         - path: /
           backend:
             serviceName: prosper202
-            servicePort: 4000        
+            servicePort: 8081        
   tls:
   - hosts:
     - track1.johcp.com

@@ -11,5 +11,10 @@ kubectl exec -it mongo-0 bash
 > rs.add("mongo-1.mongo:27017")
 > rs.add("mongo-2.mongo:27017")
 
+# Connection String
 
-# Reference: https://developer.ibm.com/technologies/containers/tutorials/cl-deploy-mongodb-replica-set-using-ibm-cloud-container-service/
+mongodb://mongo‑0.mongo:27017,mongo‑1.mongo:27017,mongo‑2.mongo/myproject?replicaSet=rs0
+
+# Reference: 
+
+https://developer.ibm.com/technologies/containers/tutorials/cl-deploy-mongodb-replica-set-using-ibm-cloud-container-service/

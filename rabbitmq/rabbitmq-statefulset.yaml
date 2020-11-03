@@ -74,8 +74,8 @@ spec:
         - name: RABBITMQ_ERLANG_COOKIE
           valueFrom:
             secretKeyRef:
-              name: rabbitmq-config
-              key: erlang-cookie
+              name: rabbitmq-secret
+              key: rabbitmq-erlang-cookie
         ports:
         - containerPort: 5672
           name: amqp
@@ -87,7 +87,7 @@ spec:
       name: rabbitmq
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: rabbitmq # rook-ceph storageClass
+      storageClassName: rabbitmq # google cloud storageClass
       resources:
         requests:
           storage: 5Gi

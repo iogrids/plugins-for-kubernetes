@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: mongo-config
 data:
-  MONGO_INITDB_ROOT_USERNAME: johndoe # Change this
+  MONGO_INITDB_ROOT_USERNAME: jeriljose # Change this
   MONGO_INITDB_DATABASE: mydb # Change this

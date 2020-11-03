@@ -71,7 +71,7 @@ spec:
         component: mongo-pvc
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: standard
+      storageClassName: mongodb
       resources:
         requests:
           storage: 10Gi

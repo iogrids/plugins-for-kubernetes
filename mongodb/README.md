@@ -1,24 +1,5 @@
-# Initiate and configure the MongoDB replica set
+mongodb://<username>:<password>@mongo-0.mongo.mongo-namespace.svc.cluster.local,mongo-1.mongo.mongo-namespace.svc.cluster.local,mongo-2.mongo.mongo-namespace.svc.cluster.local:27017/<mydb>?replicaSet=<myRsName>?authSource=admin
 
-```
-> kubectl exec -it mongo-0 bash
+Reference:
 
-> mongo
-
-> rs.initiate()
-
-> var cfg = rs.conf();cfg.members[0].host="mongo-0.mongo:27017";rs.reconfig(cfg)
-
-> rs.add("mongo-1.mongo:27017")
-> rs.add("mongo-2.mongo:27017")
-
-```
-
-# Connection String
-
-```
-mongodb://mongo-0.mongo:27017,mongo-1.mongo:27017,mongo-2.mongo/myproject?replicaSet=rs0
-```
-# Reference: 
-
-https://developer.ibm.com/technologies/containers/tutorials/cl-deploy-mongodb-replica-set-using-ibm-cloud-container-service/
+https://switchit-conseil.com/2019/10/16/deploy-a-secured-high-availability-mongodb-replica-set-on-kubernetes/

@@ -43,16 +43,7 @@ spec:
         - containerPort: 27017
         volumeMounts:
         - name: mongo-data
-          mountPath: /data/db
-        env:
-        - name: MONGO_INITDB_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mongo-secrets
-              key: mongo-password
-        envFrom:
-        - configMapRef: # Import our config map
-            name: mongo-config
+          mountPath: /data/db        
   volumeClaimTemplates:
   - metadata:
       name: mongo-data

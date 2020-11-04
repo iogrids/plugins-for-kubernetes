@@ -16,7 +16,7 @@ data:
     databases:
       default:
         connector: mongo
-        uri: mongodb://jeriljose:M!cr0507t@mongo-0.mongo.default.svc.cluster.local,mongo-1.mongo.default.svc.cluster.local,mongo-2.mongo.default.svc.cluster.local:27017/<mydb>?replicaSet=<myRsName>?authSource=admin 
+        uri: mongodb://jeriljose:M!cr0507t@mongo-0.mongo.default.svc.cluster.local,mongo-1.mongo.default.svc.cluster.local,mongo-2.mongo.default.svc.cluster.local:27017/<mydb>?replicaSet=mongo?authSource=admin 
         active: "true"
         connectionLimit: 20
         database: "prisma"
@@ -32,7 +32,7 @@ data:
     databases:
       default:
         connector: mongo
-        uri: mongodb://jeriljose:M!cr0507t@mongo-0.mongo.default.svc.cluster.local,mongo-1.mongo.default.svc.cluster.local,mongo-2.mongo.default.svc.cluster.local:27017/<mydb>?replicaSet=<myRsName>?authSource=admin 
+        uri: mongodb://jeriljose:M!cr0507t@mongo-0.mongo.default.svc.cluster.local,mongo-1.mongo.default.svc.cluster.local,mongo-2.mongo.default.svc.cluster.local:27017/<mydb>?replicaSet=monogo?authSource=admin 
         active: "true"
         connectionLimit: 20
         database: "prisma"

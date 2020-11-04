@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mongo
-  namespace: mongo-namesapce # Change or remove me
+  namespace: default # Change or remove me
 spec:
   serviceName: mongo
   replicas: 3
@@ -71,7 +71,7 @@ spec:
         component: mongo-pvc
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: mongodb
+      storageClassName: standard # default storage class of GCP 
       resources:
         requests:
           storage: 10Gi

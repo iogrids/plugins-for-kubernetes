@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mongo # The name is important as it will be part of the URL to access your mongo instance
-  namespace: mongo-namespace # Change or remove me
+  namespace: default # Change or remove me
   labels:
     app: mongo
     component: database-service

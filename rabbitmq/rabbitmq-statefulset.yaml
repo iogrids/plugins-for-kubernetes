@@ -87,7 +87,7 @@ spec:
       name: rabbitmq
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: rabbitmq # google cloud storageClass
+      storageClassName: standard # google cloud default storageClass
       resources:
         requests:
           storage: 5Gi

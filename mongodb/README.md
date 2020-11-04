@@ -15,14 +15,11 @@ mongodb://mongo-0.mongo.default.svc.cluster.local,mongo-1.mongo.default.svc.clus
 
 > mongo
 
-> rs.initiate()
-
-> var cfg = rs.conf();cfg.members[0].host="mongo-0.mongo:27017";rs.reconfig(cfg)
-
-> rs.add("mongo-1.mongo:27017")
-> rs.add("mongo-2.mongo:27017")
-> rs.status()
-```
+rs.initiate({_id: "rs0", version: 1, members: [
+       { _id: 0, host : "mongo-0.mongo.default.svc.cluster.local:27017" },
+       { _id: 1, host : "mongo-1.mongo.default.svc.cluster.local:27017" },
+       { _id: 2, host : "mongo-2.mongo.default.svc.cluster.local:27017" }
+ ]});
 
 Reference:
 

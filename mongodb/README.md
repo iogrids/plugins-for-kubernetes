@@ -5,7 +5,7 @@ mongodb://<username>:<password>@mongo-0.mongo.mongo-namespace.svc.cluster.local,
 
 Example:
 
-mongodb://jeriljose:M!cr0507t@mongo-0.mongo.default.svc.cluster.local,mongo-1.mongo.default.svc.cluster.local,mongo-2.mongo.default.svc.cluster.local:27017/<mydb>?replicaSet=rs0?authSource=admin
+mongodb://mongo-0.mongo.default.svc.cluster.local,mongo-1.mongo.default.svc.cluster.local,mongo-2.mongo.default.svc.cluster.local:27017/<mydb>?replicaSet=rs0?authSource=admin
 ```
 
 # Configuring mongodb replica set

@@ -30,9 +30,15 @@ spec:
         image: mongo:4
         command:
         - mongod
+        - "--wiredTigerCacheSizeGB"
+        - "0.25"
         - "--bind_ip_all"
         - "--replSet"
         - rs0
+        #resources:
+        #  requests:
+        #    cpu: 1
+        #    memory: 2Gi
         ports:
         - containerPort: 27017
         volumeMounts:

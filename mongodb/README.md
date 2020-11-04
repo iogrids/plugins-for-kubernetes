@@ -21,6 +21,7 @@ mongodb://jeriljose:M!cr0507t@mongo-0.mongo.default.svc.cluster.local,mongo-1.mo
 
 > rs.add("mongo-1.mongo:27017")
 > rs.add("mongo-2.mongo:27017")
+> rs.status()
 ```
 
 Reference:
